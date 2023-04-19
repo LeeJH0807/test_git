@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class = "title"><h1 style = "font-size: 20px;">회원가입</h1></div>
+        <div class = "email">
+            <input id="email" type="text" placeholder="이메일을 입력해 주세요.">
+        </div>
+        <div class="name">
+            <input id="name"  type="text" placeholder="이름을 입력해 주세요.">
+        </div>
+        <div class="password">
+            <input id="password" type="password" placeholder="비밀번호를 입력해 주세요.">
+        </div>
+        <div class="passwordCheck">
+            <input id="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
+        </div>
+        <div class="phone">
+            <input id="phone_front" type="text" size="1" maxlength="3" oninput="FocusToMid()">
+            <input id="phone_mid" type="text" size="3" maxlength="4" oninput="FocusToEnd()">
+            <input id="phone_end" type="text" size="3" maxlength="4" >
+        </div>
+    </div>
+
+    <script>
+        function FocusToMid(){
+            const phone_front = document.getElementById("phone_front").value 
+            if(phone_front.length === 3){
+                document.getElementById("phone_mid").focus();
+            }
+        }
+
+        function FocusToEnd(){
+            const phone_mid = document.getElementById("phone_mid").value 
+            if(phone_mid.length === 4){
+                document.getElementById("phone_end").focus();
+            }
+        }
+
+    
+    </script>
+
+
+    
+</body>
+</html>

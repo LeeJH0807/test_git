@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>구구단</h1>
+    <script>
+        var i=2, j=1;
+        var dan;
+                
+        /*
+        for(i=2; i<10; i++){ //for문 사용(기본)
+            
+            if(j===1){
+            document.write("<h3>" + i +"단</h3>");                 
+            }else if(j===10){
+                j=1;
+                continue;
+            }
+            
+            document.write(i+" X "+ j +" = " + i*j +"<br>");
+            i--; j++;          
+
+        }*/
+        
+        /*
+        for(i=18; i<90; i++){ //몫과 나머지 활용
+            dan=Math.floor(i/9);
+            j=i%9+1;
+            document.write(dan+" X "+ j +" = " + dan*j +"<br>");
+        }
+        */
+
+        do{   //숫자를 입력받아 해당 숫자까지 구구단 표기
+            var num = Number(prompt("2단부터 몇단까지?\n실수 입력시 소숫점 아래 숫자는 버림 처리합니다."));
+            var n = Math.floor(num);
+            if(n<2)
+                alert("2이상의 숫자를 입력하세요");
+        }while(n<=1)
+
+        for(i=18; i<9*(n+1); i++){ 
+            dan=Math.floor(i/9);
+            j=i%9+1;
+            if(j===1)
+            document.write("<h3>" + i/9 +"단</h3>");
+             
+            document.write(dan+" X "+ j +" = " + dan*j +"<br>");
+        }
+
+
+
+    </script>
+    
+</body>
+</html>

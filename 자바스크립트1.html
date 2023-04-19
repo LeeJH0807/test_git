@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+    <h1 id="heading1">자바스크립트1</h1>
+    <h2 id="heading2">자바스크립트2</h2>
+    <script>
+        /*
+        var heading1 = document.querySelector('#heading1');
+        heading1.onclick = function() {
+            alert("Hello!")
+            heading1.style.color = "red";
+        }*/
+
+        /*
+        var month = prompt('월을 입력하세요 (1~12)');
+        
+        if(month<1 || month>12){
+            alert('잘못 입력했습니다');
+         }else if(month>=3 && month<=5){
+            document.write('<p>' + month + '월은 봄 입니다</p>')
+         }else if(month>=6 && month<=8){
+            document.write('<p>' + month + '월은 여름 입니다</p>')
+         }else if(month>=9 && month<=11){
+            document.write('<p>' + month + '월은 가을 입니다</p>')
+         }else{
+            document.write('<p>' + month + '월은 겨울 입니다</p>')
+         }*/
+         
+         /*
+        switch(month){
+            case "3": case "4": case "5":
+            document.write('<p>봄 입니다</p>')
+            break;
+            case "6": case "7": case "8":
+            document.write('<p>여름 입니다</p>')
+            break;
+            case "9": case "10": case "11":
+            document.write('<p>가을 입니다</p>')
+            break;
+            case "1": case "2": case "12":
+            document.write('<p>겨울 입니다</p>')
+            break;
+            default:
+            alert('잘못 입력했습니다');
+            break;
+                    }*/
+        
+        var i;
+        var num = prompt('1부터 n까지 더할 숫자 n의 값 입력');
+        var sum=0
+
+        for(i=1; i<=num;i++) {
+            sum += i;
+            /*document.write("<p>1부터 " + i + "까지 더하면 " +sum+"입니다.</p>");*/ \
+            //과정 확인용(확인 후 비활성화)           
+        }
+        document.write("<p>1부터 " + num + "까지 더하면 " +sum+"입니다.</p>");
+    </script>
+    <script src="js/changecolor.js"></script>
+</body>
+</html>

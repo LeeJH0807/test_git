@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        function plus(n1,n2){
+            return n1+n2;
+        }*/
+        /*
+        function minus(n1,n2){
+            return n1-n2;
+        }*/
+
+        function calc(n1,n2,op){ // 덧셈 뺼셈 계산
+            var result = '잘못된 연산자'
+
+            switch(op){
+                case '+':
+                    result = n1+n2;
+                    break;
+                case '-':
+                    result = n1-n2;
+                    break;
+            }
+            return result;
+        }
+
+        function sum(n){ //1~n까지의 합
+            if(n==0)
+            return 0;
+            
+
+            return n+sum(n-1);
+        }
+
+        var n = Number(prompt("1부터 입력한 숫자 까지의 합 구하기"));
+        document.write("1부터 "+n+"까지의 합은 "+sum(n) + "입니다.");
+        
+    </script>
+    
+    <form><input type="button" value="다시 계산하기" onClick="window.location.reload()" style="margin-top: 5mm; margin-left: 5mm;"></form>
+
+</body>
+</html>

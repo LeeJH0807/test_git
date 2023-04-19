@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let plus = (a,b) => a+b;
+        let minus = (a,b) => a-b;
+        let mult = (a,b) => a*b;
+        let div = (a,b) => a/b;
+        let arr = [plus, minus, mult, div];
+        var i;
+
+        /*
+        document.write(plus + ', typeof : ' + typeof(plus)+'<br>');
+        document.write(minus + ', typeof : ' + typeof(minus)+'<br>');
+        document.write('arr typeof : ' + typeof(arr)+'<br>');
+
+        
+        document.write(arr[0]+', 실행 결과 : '+arr[0](100,200)+'<br>');
+        document.write(arr[1]+', 실행 결과 : '+arr[1](100,200)+'<br>');*/
+
+        var n = Number(prompt("첫번째 숫자를 입력하세요."));
+        var m = Number(prompt("두번쨰 숫자를 입력하세요."));
+
+
+        for(i=0; i<arr.length;i++)
+            document.write(arr[i]+', 실행 결과 : '+arr[i](n,m)+'<br>');
+            
+        arr.forEach(function(item,index,array){
+            console.log('item : '+item);
+            console.log('index : '+index);
+            console.log('array : '+array);
+        });
+        
+        
+        console.dir(arr);
+        console.dirxml(arr);
+        console.dir(arr[0]);
+        console.dirxml(arr[0]);
+        console.dir(plus);
+        console.dirxml(plus);
+
+    </script>
+    
+</body>
+</html>

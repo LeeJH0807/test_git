@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <style>
+        div {
+            padding-top: 3px;
+            padding-bottom: 8px;
+        }
+        
+    </style>
+</head>
+<body style="background-color: bisque;">
+    <div style="width: 140mm; height: 100%; border-style: solid; border-width: 0.5mm; background-color: aliceblue; margin-top: 1cm; margin-left: 15mm;margin-bottom: 1cm; ">
+        <form style="margin-left: 15mm; margin-top: 15mm;">
+            <div style="margin-bottom: 10mm;"><h1>회원가입</h1></div>
+            <div style="font-size: 13pt;">아이디<br> 
+                <input type="text" id="user-id" maxlength="20" placeholder="6~20자 사이의 영문 숫자 조합" style="height: 13mm; width: 80mm;">
+                <button type="button" class="btn btn-secondary btn-sm" id="idbtn" style="margin-left: 5mm; width: 25mm; height: 13mm;" onclick="IdCheck()">중복확인</button>
+                <div id="idCheckError" style="font-size: 8pt; color: red;"></div>
+            </div>
+            <div style="font-size: 13pt;">비밀번호<br>
+                <input type="password" id="password" placeholder="영문, 숫자, 특수문자를 포함하여 8~20자" style=" height: 13mm; width:110mm "><br>
+                <div id="passwordError"  style="font-size: 8pt; color: red;"></div>
+            </div>
+            <div style="font-size: 13pt;">비밀번호 확인<br>            
+                <input type="password" id="passwordCheck" placeholder="비밀번호 재입력" style=" height: 13mm; width:110mm"><br>
+                <div id="passwordCheckError" style="font-size: 8pt; color: red;"></div>
+            </div>
+            <div style="font-size: 13pt;">이름<br>
+                <input type="text" id="user-name" style=" height: 13mm; width:110mm" ><br>
+                <div id="nameError" style="font-size: 8pt; color: red;"></div>
+            </div>
+            <div style="font-size: 13pt;">전화번호<br>
+                <select id="telco" >
+                    <option selected disabled>선택</option>
+                    <option value="skt">skt</option>
+                    <option value="lgu+">lgU+</option>
+                    <option value="kt">kt</option>
+                    <option value="알뜰폰">알뜰폰</option>
+                </select>
+                <input id="phone_front" type="text" size="1" maxlength="3" oninput="FocusToMid()" style="margin-left: 5mm;">
+                <label for="phone_mid"> - </label>
+                <input id="phone_mid" type="text" size="3" maxlength="4" oninput="FocusToEnd()">
+                <label for="phone_end"> - </label>
+                <input id="phone_end" type="text" size="3" maxlength="4" >
+                <button type="button" class="btn btn-secondary btn-sm" id="phonebtn" style="margin-left: 6mm; width: 25mm; height: 10mm;" onclick="CheckTel()">인증하기</button><br>
+                <div id="phoneNumError" style="font-size: 8pt; color: red;"></div>
+            </div>
+            <input class="btn btn-success" type="button" value="가입신청" style="margin-left: 45mm; margin-top: 10mm; margin-bottom: 10mm;" onclick="CheckPw()">
+          
+        </form>
+    </div>
+
+    <script>
+        function FocusToMid(){
+            const phone_front = document.getElementById("phone_front").value 
+            if(phone_front.length === 3){
+                document.getElementById("phone_mid").focus();
+            }
+        }
+
+        function FocusToEnd(){
+            const phone_mid = document.getElementById("phone_mid").value 
+            if(phone_mid.length === 4){
+                document.getElementById("phone_end").focus();
+            }
+        }
+
+        function IdCheck(){
+            var id = document.getElementById("user-id").value
+            var pattern1 = /[0-9]/; 
+            var pattern2 = /[a-zA-Z]/;
+            var pattern3 = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+            var pattern4 = /[~!@#\#$%<>^&*]/;
+
+
+
+            if(id.length<6 || id.length>20){                                                                                        //id 자릿수 조건 판별
+                document.getElementById("idCheckError").innerHTML ="아이디는 6~20자까지 입력 가능합니다."
+            }else if(pattern3.test(id) || pattern4.test(id)){                                                                       // 한글 or 특문 검사
+                document.getElementById("idCheckError").innerHTML ="아이디는 6자리 이상의 영어와 숫자의 조합으로만 이루어져야합니다."
+            }else if(pattern1.test(id) && pattern2.test(id)){                                                                       // 영문 and 숫자 동시 존재 유무 검사
+                document.getElementById("idCheckError").innerHTML =""
+                alert("사용 가능한 아이디입니다.")
+                document.getElementById("idbtn").innerHTML="사용가능"                                                               //인증 완료 시 버튼 비활성화 및 아이디 수정 불가
+                document.getElementById("idbtn").disabled = 'disabled'
+                document.getElementById("user-id").readOnly = 'true'
+            }else{
+                document.getElementById("idCheckError").innerHTML ="아이디는 6자리 이상의 영어와 숫자의 조합으로만 이루어져야합니다."
+            }
+            
+        }
+
+        function CheckTel(){
+            var telnum1 = document.getElementById("phone_front").value
+            var telnum2 = document.getElementById("phone_mid").value
+            var telnum3 = document.getElementById("phone_end").value
+            var telco = document.getElementById("telco").value
+
+            if(telco == "선택"){                                                                                                           //통신사 선택 안했을 때
+                document.getElementById("phoneNumError").innerHTML = "통신사를 선택하세요"
+            }else if(telnum1<1000 && telnum2<10000 && telnum3<10000 && telnum1.length == 3 && telnum2.length == 4 && telnum3.length == 4){//숫자만 각각 3 4 4 자리 입력받으면 인증 실행
+                document.getElementById("phoneNumError").innerHTML = ""
+                alert("인증이 완료되었습니다.")                                                                                             //인증 완료시 바뀌는 것
+                document.getElementById("phonebtn").innerHTML="사용가능"                                                                   //버튼 사용가능으로 변환 후 비활성화
+                document.getElementById("phonebtn").disabled = 'disabled'
+                document.getElementById("phone_front").readOnly = 'true'                                                                   //핸드폰 번호 정보 수정 불가 설정
+                document.getElementById("phone_mid").readOnly = 'true'
+                document.getElementById("phone_end").readOnly = 'true'
+                document.getElementById("telco").disabled = 'disabled'
+
+            }else{
+                document.getElementById("phoneNumError").innerHTML = "올바른 형식의 전화번호를 입력하세요"                                    //숫자 이외의 자료 입력시
+                document.getElementById("phone_front").value = null;                                                                       //핸드폰 번호 관련 정보 초기화
+                document.getElementById("phone_mid").value = null;
+                document.getElementById("phone_end").value = null;
+                document.getElementById("telco").value = '선택';
+                document.getElementById("phone_front").focus();                                                                             //초기화 후 첫번쨰 번호입력칸으로 커서 이동
+            }
+
+
+
+        }
+
+        function CheckPw(){
+            var password = document.getElementById("password").value
+            var passwordCheck = document.getElementById("passwordCheck").value
+            var name = document.getElementById("user-name").value
+            var checkid = document.getElementById("idbtn").disabled
+            var checkphone = document.getElementById("phonebtn").disabled
+            var pattern1 = /[0-9]/; 
+            var pattern2 = /[a-zA-Z]/;
+            var pattern3 = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+            var pattern4 = /[~!@#\#$%<>^&*]/;
+
+
+            if(password != passwordCheck){
+                document.getElementById("passwordError").innerHTML=""
+                document.getElementById("passwordCheckError").innerHTML="동일한 비밀번호를 입력하세요"
+            }else if(password.length < 8){
+                document.getElementById("passwordError").innerHTML="8자리 이상의 비밀번호를 입력하세요"
+                document.getElementById("passwordCheckError").innerHTML=""
+            }else if(password.length>20){
+                document.getElementById("passwordError").innerHTML="비밀번호는 20자리를 넘을 수 없습니다"
+                document.getElementById("passwordCheckError").innerHTML=""
+            }else if(!pattern1.test(password) || !pattern2.test(password) || !pattern4.test(password)){
+                document.getElementById("passwordError").innerHTML="비밀번호는 영문, 숫자, 특수문자를 모두 포함하여야합니다"
+                document.getElementById("passwordCheckError").innerHTML=""
+            }else{
+                document.getElementById("passwordError").innerHTML=""
+                document.getElementById("passwordCheckError").innerHTML=""
+
+
+                if(checkid < 1){
+                    alert("아이디 중복검사를 실행해주세요.")
+                    document.getElementById("user-id").focus();
+                }else if(checkphone < 1){
+                    alert("전화번호를 인증하여주세요")
+                    document.getElementById("phonebtn").focus();
+                }else if(name.length == 0){
+                    alert("이름을 입력하여주세요")
+                    document.getElementById("user-name").focus();
+                }else if(!pattern1.test(name) && !pattern2.test(name) && !pattern4.test(name) && pattern3.test(name)){
+                    document.getElementById("nameError").innerHTML = ""
+                    alert("가입이 승인되었습니다.")
+                }else{
+                    document.getElementById("nameError").innerHTML = "이름은 한글로만 입력하세요"
+                }
+            }
+
+            
+
+            
+
+        }
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="images/비즈니스.png" alt="bs" id="bs">
+    <img src="images/차트.PNG" alt="ch" id="ch">
+
+    <script>
+        var bs = document.querySelector('#bs');
+        bs.onclick = function(event){
+            console.log(this);
+            console.dir(this);
+            alert('이벤트 유형 : ' + event.type
+            +", 이벤트 발생 위치" + event.pageX +","+event.pageY);
+        }
+
+        var ch = document.querySelector('#ch');
+        ch.onclick = function(event){
+            console.log(this);
+            console.dir(this);
+            alert('이벤트 유형 : ' + event.type
+            +", 이벤트 발생 위치" + event.pageX +","+event.pageY);
+        }
+
+    </script>
+    
+</body>
+</html>
